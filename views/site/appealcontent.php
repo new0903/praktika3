@@ -14,6 +14,11 @@ $items=[
 
 $this->title = 'обращения';
 ?>
+
+<?php  if(Yii::$app->user->isGuest): ?>
+        <h1>У вас нет доступа к этой страницу</h1>
+<?php  else: ?>
+
 <?php $form = ActiveForm::begin(['id' => 'search-form','method'=>'GET']); ?>
 <?= $form->field($search, 'search') ?>
 <div class="form-group">
@@ -21,23 +26,28 @@ $this->title = 'обращения';
 </div>
 <?php ActiveForm::end(); ?>
 
-<?php echo $sort->link('data') . ' | ' .$sort->link('name') . ' | ' .$sort->link('phone'); ?>
 
 <div class="site-about">
-    <section class="popular-lines">
-        <ul class="lines-list">
+    <table>
+        <thead>
+            <tr>
+                <td><?php echo $sort->link('name') ?></td>
+                <td><?php echo $sort->link('phone') ?></td>
+                <td><?php echo $sort->link('created_at') ?></td>
+                <td>почта</td>
+            </tr> 
+        </thead>  
+        <tbody>
             <?php foreach($result as $item): ?>
-                <li>
-                    <h3><?= Html::a($item["name"],['/site/content','id'=>$item["id"]]) ?></h3>
-                    <div class="post-content">
-                        <span class="data_start_time"><?= $item["phone"]?></span>
-                        <span class="data_start_time"><?= $item["data"]?></span>
-                        <span class="data_start_time"><?= $item["email"]?></span>
-                    </div>
-                </li>
+                <tr>
+                    <td><?= Html::a($item["name"],['/site/content','id'=>$item["id"]]) ?></td>
+                    <td><?= $item["phone"]?></td>
+                    <td><?= $item["created_at"]?></td>
+                    <td><?= $item["email"]?></td>
+                </tr>
             <?php endforeach; ?>
-        </ul>
-    </section>
+        </tbody>
+    </table>
 </div>
 
 <?php if ($limit!=$pages): ?>
@@ -72,3 +82,5 @@ $this->title = 'обращения';
     </div>
 </div>
     
+
+<?php  endif;?>

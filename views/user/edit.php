@@ -23,6 +23,9 @@ $this->title = 'изменение пользователя';
 ?>
 
 
+<?php  if(Yii::$app->user->isGuest): ?>
+        <h1>У вас нет доступа к этой страницу</h1>
+<?php  else: ?>
 
 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
@@ -41,3 +44,4 @@ $this->title = 'изменение пользователя';
     </div>
 
 <?php ActiveForm::end(); ?>
+<?php  endif;?>

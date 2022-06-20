@@ -15,6 +15,9 @@ $items=[
 ];
 $this->title = 'список пользователей';
 ?>
+<?php  if(Yii::$app->user->isGuest): ?>
+        <h1>У вас нет доступа к этой страницу</h1>
+<?php  else: ?>
 
 <?php $form = ActiveForm::begin(['id' => 'search-form','method'=>'GET']); ?>
 <?= $form->field($search, 'search') ?>
@@ -22,22 +25,32 @@ $this->title = 'список пользователей';
     <?= Html::submitButton('Найти', ['class' => 'btn btn-primary', 'name' => 'search-button']) ?>
 </div>
 <?php ActiveForm::end(); ?>
-<?= Html::a('Создать пользователя',['/user/create']) ?>
+<?= Html::a('Создать пользователя',['/user/create'],['class'=>'btn btn-primary']) ?>
 <div class="site-about">
     <h1> Catalog</h1>
-    <section class="popular-lines">
-        <ul class="lines-list">
+    
+
+    <table>
+        <thead>
+            <tr>
+                <td>name</td>
+                <td>login</td>
+                <td></td>
+            </tr>
+        </thead> 
+        <tbody> 
             <?php foreach($result as $item): ?>
-                <li>
-                    <div class="post-content">
-                        <span class="data_start_time"><?= $item["name"]?></span>
-                        <span class="data_start_time"><?= $item["login"]?></span>
-                        <?= Html::a('изменить',['/user/edit','id'=>$item["id"]]) ?>
-                    </div>
-                </li>
+                <tr>
+                    <td><?= $item["name"]?></td>
+                    <td><?= $item["login"]?></td>
+                    <td><?= Html::a('изменить',['/user/edit','id'=>$item["id"]]) ?></td>
+                </tr>
             <?php endforeach; ?>
-        </ul>
-    </section>
+        </tbody>
+    </table>
+
+
+
 </div>
 
 <?php if ($limit!=$pages): ?>
@@ -72,3 +85,4 @@ $this->title = 'список пользователей';
     </div>
 </div>
     
+<?php  endif;?>

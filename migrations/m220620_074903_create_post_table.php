@@ -3,23 +3,23 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%appeal}}`.
+ * Handles the creation of table `{{%post}}`.
  */
-class m220608_050410_create_appeal_table extends Migration
+class m220620_074903_create_post_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%appeal}}', [
+        $this->createTable('{{%post}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(200),
             'phone' => $this->string(200),
             'email' => $this->string(200),
             'file' => $this->string(200)->null(),
             'text' => $this->text(),
-            'created_at' => $this->dateTime()
+            'data' => $this->dateTime()
         ]);
     }
 
@@ -28,6 +28,6 @@ class m220608_050410_create_appeal_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%appeal}}');
+        $this->dropTable('{{%post}}');
     }
 }

@@ -6,6 +6,9 @@ use yii\helpers\Html;
 $this->title = 'Административный раздел';
 
 ?>
+<?php  if(Yii::$app->user->isGuest): ?>
+        <h1>У вас нет доступа к этой страницу</h1>
+<?php  else: ?>
 
 
 <div class="container">
@@ -20,3 +23,4 @@ $this->title = 'Административный раздел';
 
 </div>
 
+<?php  endif;?>

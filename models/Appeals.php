@@ -1,5 +1,5 @@
 <?php
-namespace app\models\db;
+namespace app\models;
 
 use yii\db\ActiveRecord;
 
@@ -7,7 +7,7 @@ use yii\db\ActiveRecord;
 class Appeals extends ActiveRecord{
 
     public static function tableName(){
-        return 'post';//имя таблицы personal
+        return 'appeal';//имя таблицы personal
     }
 
     // public function getUser(){ //связь 1 ко многим 

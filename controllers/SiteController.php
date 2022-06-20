@@ -9,7 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\AppealForm;
-use app\models\db\Appeals;
+use app\models\Appeals;
 use app\models\AboutsForm;
 use app\models\SearchForm;
 use yii\data\Sort;
@@ -170,7 +170,7 @@ class SiteController extends Controller
                     $post->email=$model->email;
                     $post->phone=$model->phone;
                     $post->name=$model->name;
-                    $post->data=date('Y-m-d H:i:s');
+                    $post->created_at=date('Y-m-d H:i:s');
                     $post->save();
                 //     var_dump($message);
                 //     die;
@@ -198,9 +198,9 @@ class SiteController extends Controller
     {
         $sort=new Sort([
             'attributes' => [
-                'data' => [
-                    'asc' => ['data' => SORT_ASC, 'data' => SORT_ASC],
-                    'desc' => ['data' => SORT_DESC, 'data' => SORT_DESC],
+                'created_at' => [
+                    'asc' => ['created_at' => SORT_ASC, 'created_at' => SORT_ASC],
+                    'desc' => ['created_at' => SORT_DESC, 'created_at' => SORT_DESC],
                     'default' => SORT_DESC,
                     'label' => 'отсортировать по дате',
                 ],
@@ -236,7 +236,10 @@ class SiteController extends Controller
                 
             }
         }
-        $posts=Appeals::find()->where(['like','name',$poisk])->orWhere(['like','email',$poisk])->orWhere(['like','phone',$poisk])->orderBy($sort->orders)->asArray()->all();//->with('user')
+        $posts=Appeals::find()->where(['like','name',$poisk])->
+        orWhere(['like','email',$poisk])->
+        orWhere(['like','phone',$poisk])->
+        orderBy($sort->orders)->asArray()->all();//->with('user')
         
         if ($model->load(Yii::$app->request->get())) {
             if ($model->validate()) {
