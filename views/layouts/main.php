@@ -37,7 +37,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            //['label' => 'Home', 'url' => ['/site/index']],
            // ['label' => 'Обращения', 'url' => ['/site/appealcontent']],
             ['label' => 'Написать обращение', 'url' => ['/site/appeal']],
             !Yii::$app->user->isGuest ? (
@@ -51,7 +51,7 @@ AppAsset::register($this);
             // ''
             // ),
             Yii::$app->user->isGuest ? (
-                ['label' => 'Авторизоватся', 'url' => ['/site/login']]
+                ['label' => 'Авторизоватся(Гость)', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
