@@ -42,7 +42,7 @@ class AppealForm extends Model
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
          
-            [['userFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'doc, pdf, docx'],
+            [['userFile'], 'file']   // , 'skipOnEmpty' => false, 'extensions' => 'doc, pdf, docx'],
         ];
     }
 
